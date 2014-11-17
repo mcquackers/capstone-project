@@ -1,0 +1,6 @@
+<tr>
+<td><%= image_tag listing.image_url, class: "thumbnail" %></td>
+<td><%= link_to listing.title, marketplace_listing_path(listing) %></td>
+<td><%= number_to_currency(listing.price) %></td>
+<td><%= link_to listing.user.name, listing.user %></td>
+</tr>
