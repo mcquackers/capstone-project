@@ -10,7 +10,7 @@
     <div class="container">
       <div class="session-info">
         <% if signed_in? %>
-          <%= current_user.email %>
+          <%= link_to current_user.name, current_user %>
           <%= link_to "Sign out", session_path, method: :delete %>
         <% else %>
           <p>Guest</p>
