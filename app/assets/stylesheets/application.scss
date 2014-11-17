@@ -16,3 +16,7 @@
 
 @import "bourbon";
 @import "neat";
+
+div.container {
+  @include outer-container;
+}
