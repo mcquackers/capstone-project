@@ -1,0 +1,7 @@
+div.container {
+  @include outer-container;
+}
+
+.session-info {
+  float: right;
+}
