@@ -18,6 +18,26 @@
     <%= form.password_field :password %>
   </div>
   <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :area %>
+    <%= form.collection_select(:area_id, @areas, :id, :name,
+      {include_blank: "Select your geographic area"}) %>
+  </div>
+
+  <p>Optional Personal Information:</p>
+
+  <div>
+    <%= form.label :age %>
+    <%= form.text_field :age %>
+  </div>
+  <div>
+    <%= form.label :bike %>
+    <%= form.text_field :bike %>
+  </div>
+  <div>
     <%= form.submit "Sign up" %>
   </div>
 <% end %>
