@@ -28,6 +28,12 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
   end
 
+  def destroy
+    listing = Listing.find(params[:id])
+    listing.destroy
+    redirect_to area_marketplace_path(listing.area)
+  end
+
   private
 
   def listing_params

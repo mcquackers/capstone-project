@@ -1,6 +1,7 @@
 <h1>Viewing the <%= @listing.title %> listing</h1>
 <% if @listing.user.id == current_user.id %>
   <%= link_to "Edit this listing",
-    edit_area_marketplace_listing_path(@listing.area, @listing) %>
+    listing_form_url(@listing) %>
+  <%= button_to "Delete this post", listing_form_url(@listing), method: :delete %>
 <% end %>
 

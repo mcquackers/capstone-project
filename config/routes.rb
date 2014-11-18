@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show]
   resources :areas, only: [:show] do
     resource :marketplace, only: [:show] do
-      resources :listings, only: [:show, :new, :create, :edit, :update]
+      resources :listings, only: [:show, :new, :create,
+                                  :edit, :update, :destroy]
     end
   end
   resources :dashboards, only: [:index]
