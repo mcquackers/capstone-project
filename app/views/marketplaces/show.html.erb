@@ -1,2 +1,4 @@
 <h1>Viewing the marketplace!</h1>
+<%= link_to "Create a new listing",
+  new_area_marketplace_listing_path(@area) %>
 <%= render "listing_table", listings: @listings %>
