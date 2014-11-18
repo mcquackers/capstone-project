@@ -1,7 +1,6 @@
 <h1>Viewing the <%= @listing.title %> listing</h1>
 <% if @listing.user.id == current_user.id %>
   <%= link_to "Edit this listing",
-    listing_form_url(@listing) %>
-  <%= button_to "Delete this post", listing_form_url(@listing), method: :delete %>
+    edit_area_listing_path(@listing.area, @listing) %>
+  <%= button_to "Delete this post", [@listing.area, @listing], method: :delete %>
 <% end %>
-

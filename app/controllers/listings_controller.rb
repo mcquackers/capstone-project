@@ -8,10 +8,15 @@ class ListingsController < ApplicationController
     @area = Area.find(params[:area_id])
     @listing = @area.listings.new(listing_params)
     if @listing.save
-      redirect_to area_marketplace_listing_path(@area, @listing)
+      redirect_to area_listing_path(@area, @listing)
     else
       render :new
     end
+  end
+
+  def index
+    @area = Area.find(params[:area_id])
+    @listings = @area.listings
   end
 
   def edit
@@ -21,7 +26,7 @@ class ListingsController < ApplicationController
   def update
     listing = Listing.find(params[:id])
     listing.update(listing_params)
-    redirect_to area_marketplace_listing_path(listing.area, listing)
+    redirect_to area_listing_path(listing.area, listing)
   end
 
   def show
@@ -31,7 +36,7 @@ class ListingsController < ApplicationController
   def destroy
     listing = Listing.find(params[:id])
     listing.destroy
-    redirect_to area_marketplace_path(listing.area)
+    redirect_to area_listings_path(listing.area)
   end
 
   private

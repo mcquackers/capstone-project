@@ -1,6 +1,5 @@
 <div class="listing-form">
-  <%= form_for listing,
-    url: listing_form_url(@listing) do |form| %>
+  <%= form_for [@listing.area, @listing] do |form| %>
     <div>
       <%= form.label :title %>
       <%= form.text_field :title %>
