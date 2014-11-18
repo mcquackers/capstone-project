@@ -1,27 +1,3 @@
-<h1>Creating a new listing in the <%= @area.name %> area</h1>
-<div class="new-listing">
-  <%= form_for @listing, url: area_marketplace_listings_path(@area) do |form| %>
-    <div>
-      <%= form.label :title %>
-      <%= form.text_field :title %>
-    </div>
-    <div>
-      <%= form.label :description %>
-      <%= form.text_area :description %>
-    </div>
-    <div>
-      <%= form.label :price %>
-      <%= form.text_field :price %>
-    </div>
-    <div>
-      <%= form.label :category %>
-      <%= form.select(:category, Listing::CATEGORIES,
-        include_blank: "Select Category") %>
-     </div>
-     <div>
-      <%= form.label :image_url %>
-      <%= form.text_field :image_url %>
-     </div>
-     <%= form.submit %>
-   <% end %>
-</div>
+<h1>Creating a new listing in the <%= @listing.area.name %> area</h1>
+
+<%= render "listings/form", listing: @listing %>

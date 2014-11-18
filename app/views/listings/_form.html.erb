@@ -1,0 +1,27 @@
+<div class="listing-form">
+  <%= form_for listing,
+    url: listing_form_url(@listing) do |form| %>
+    <div>
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
+    <div>
+      <%= form.label :description %>
+      <%= form.text_area :description %>
+    </div>
+    <div>
+      <%= form.label :price %>
+      <%= form.text_field :price %>
+    </div>
+    <div>
+      <%= form.label :category %>
+      <%= form.select(:category, Listing::CATEGORIES,
+                      include_blank: "Select Category") %>
+    </div>
+    <div>
+      <%= form.label :image_url %>
+      <%= form.text_field :image_url %>
+    </div>
+    <%= form.submit %>
+  <% end %>
+</div>

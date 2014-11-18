@@ -11,4 +11,7 @@ class Guest
     1
   end
 
+  def id
+    nil
+  end
 end
