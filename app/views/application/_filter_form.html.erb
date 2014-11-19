@@ -5,16 +5,21 @@
   </span>
   <span class="filter-category">
     <%= form.label :category %>
-    <%= form.select(:category, Listing::CATEGORIES, include_blank: true) %>
+    <%= form.select(:category, Listing::CATEGORIES,
+                    include_blank: "All Categories") %>
   </span>
-  <span class="filter-price">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
+  <span class="filter-low">
+    <%= form.label :low_price %>
+    <%= form.text_field :low_price %>
+  </span>
+  <span class="filter-high">
+    <%= form.label :high_price %>
+    <%= form.text_field :high_price %>
   </span>
   <span class="filter-area">
     <%= form.label :area_id, "Area" %>
     <%= form.collection_select(:area_id, Area.all, :id, :name,
-                               include_blank: "Select your geographic area") %>
+                               include_blank: "All Areas") %>
   </span>
   <span class="filter-submit">
     <%= form.submit "Filter Results" %>
