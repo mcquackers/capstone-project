@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118143949) do
+ActiveRecord::Schema.define(version: 20141119215624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 20141118143949) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "feed_updates", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "entry_id",   null: false
+    t.string   "entry_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "feed_updates", ["user_id"], name: "index_feed_updates_on_user_id", using: :btree
 
   create_table "listings", force: true do |t|
     t.integer  "area_id",                 null: false
@@ -32,6 +42,13 @@ ActiveRecord::Schema.define(version: 20141118143949) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
+  end
+
+  create_table "status_entries", force: true do |t|
+    t.string   "image_url"
+    t.string   "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

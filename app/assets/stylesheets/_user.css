@@ -2,3 +2,8 @@
   color: blue;
   text-decoration: underline;
 }
+
+.thumbnail-image {
+  max-height: 50px;
+  max-width: 50px;
+}

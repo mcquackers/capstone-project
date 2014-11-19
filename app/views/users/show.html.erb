@@ -17,3 +17,9 @@
   <p class="lying-link"><%= @user.name %>'s Custom Courses</p>
   <p class="lying-link"><%= @user.name %>'s Cycling Groups</p>
 </div>
+<div class="status-update-form">
+  <%= render "status_entries/form", status_entry: StatusEntry.new, user: @user %>
+</div>
+<div class="update-feed">
+  <%= render "feed_updates/feed", feed_updates: @user.feed_updates %>
+</div>
