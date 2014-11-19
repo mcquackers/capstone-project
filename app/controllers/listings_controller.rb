@@ -16,7 +16,8 @@ class ListingsController < ApplicationController
 
   def index
     @area = Area.find(params[:area_id])
-    @listings = @area.listings
+    @listings = Listing.where(filter_params).where(filter_price).
+      where(filter_title)
   end
 
   def edit
@@ -45,5 +46,33 @@ class ListingsController < ApplicationController
     params.require(:listing).
       permit(:title, :description, :category, :price, :image_url).
       merge(user_id: current_user.id)
+  end
+
+  def filter_params
+    if params[:filter]
+      params.require(:filter).permit(:category, :area_id).
+        select { |_key, value| value.present? }
+    else
+      { area_id: current_user.area.id }
+    end
+  end
+
+  def filter_title
+    title_search = params[:filter].try(:title)gg
+    if params[:filter]
+      ["title ILIKE ?", "%#{params[:filter][:title]}%"]
+    else
+      {}
+    end
+  end
+
+  def filter_price
+    if params[:filter] && params[:filter][:low_price].present? &&
+        params[:filter][:high_price].present?
+      ["price BETWEEN ? AND ?",
+       params[:filter][:low_price], params[:filter][:high_price]]
+    else
+      {}
+    end
   end
 end

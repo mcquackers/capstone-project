@@ -1,1 +1,18 @@
 <h1>Viewing <%= @user.name %>'s profile</h1>
+<div class="user-info">
+    <%= image_tag user_image(@user), class: "profile-image" %>
+  <div class="user-bio">
+    <p><%= @user.name %>
+    <%= @user.area.name %></p>
+    <p><%= @user.age %></p>
+    <p><%= @user.bike %></p>
+  </div>
+</div>
+<div class="user-socials">
+  <%= link_to "#{@user.name}'s Marketplace", user_marketplace_path(@user) %>
+  <%= link_to "#{@user.name}'s Custom Courses", root_path %>
+  <%= link_to "#{@user.name}'s Top Times", root_path %>
+  <%= link_to "#{@user.name}'s Cycling Groups", root_path %>
+</div>
+<div class="user-friends">
+</div>
