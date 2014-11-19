@@ -51,9 +51,9 @@ class ListingsController < ApplicationController
   def filter_params
     if params[:filter]
       params.require(:filter).permit(:category, :area_id).
-        select { |key, value| value.present? }
+        select { |_key, value| value.present? }
     else
-      {area_id: current_user.area.id}
+      { area_id: current_user.area.id }
     end
   end
 
