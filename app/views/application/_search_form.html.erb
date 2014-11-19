@@ -1,0 +1,35 @@
+<h6>Search Marketplace listings:</h6>
+<%= form_for :search, url: area_listings_path(current_user.area),
+  method: "get" do |form| %>
+
+  <span class="search-title">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </span>
+
+  <span class="search-category">
+    <%= form.label :category %>
+    <%= form.select(:category, Listing::CATEGORIES,
+                    include_blank: "All Categories") %>
+  </span>
+
+  <span class="search-price">
+    <%= form.label :low_price %>
+    <%= form.text_field :low_price %>
+  </span>
+
+  <span class="search-price">
+    <%= form.label :high_price %>
+    <%= form.text_field :high_price %>
+  </span>
+
+  <span class="search-area">
+    <%= form.label :area_id, "Area" %>
+    <%= form.collection_select(:area_id, Area.all, :id, :name,
+                               include_blank: "All Areas") %>
+  </span>
+
+  <span class="search-submit">
+    <%= form.submit "Search Listings" %>
+  </span>
+<% end %>
