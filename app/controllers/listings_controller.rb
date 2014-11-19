@@ -58,7 +58,8 @@ class ListingsController < ApplicationController
   end
 
   def filter_title
-    if params[:filter] && params[:filter][:title].present?
+    title_search = params[:filter].try(:title)gg
+    if params[:filter]
       ["title ILIKE ?", "%#{params[:filter][:title]}%"]
     else
       {}
