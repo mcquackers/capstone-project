@@ -3,15 +3,18 @@
     <%= form.label :title %>
     <%= form.text_field :title %>
   </span>
+
   <span class="filter-category">
     <%= form.label :category %>
     <%= form.select(:category, Listing::CATEGORIES,
                     include_blank: "All Categories") %>
   </span>
+
   <span class="filter-low">
     <%= form.label :low_price %>
     <%= form.text_field :low_price %>
   </span>
+
   <span class="filter-high">
     <%= form.label :high_price %>
     <%= form.text_field :high_price %>
@@ -21,6 +24,7 @@
     <%= form.collection_select(:area_id, Area.all, :id, :name,
                                include_blank: "All Areas") %>
   </span>
+
   <span class="filter-submit">
     <%= form.submit "Filter Results" %>
   </span>
