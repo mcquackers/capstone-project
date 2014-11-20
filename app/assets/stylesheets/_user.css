@@ -7,3 +7,8 @@
   max-height: 50px;
   max-width: 50px;
 }
+
+.status-entry-image {
+  max-height: 250px;
+  max-width: 250px;
+}

@@ -1,4 +1,5 @@
 <div class="status-entry">
+  <p><%= status_image(status_entry.image_url) %></p>
   <%= status_entry.body %>
   <span><%= time_ago_in_words(status_entry.created_at) %> ago</span>
 </div>
