@@ -1,2 +1,3 @@
 <h1>Viewing <%= @user.name %>'s Dashboard</h1>
 <%= link_to "Marketplace", area_listings_path(current_user.area_id) %>
+<%= link_to "Cycling Clubs", area_clubs_path(current_user.area_id) %>
