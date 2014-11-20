@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141120162035) do
+ActiveRecord::Schema.define(version: 20141120211333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,23 @@ ActiveRecord::Schema.define(version: 20141120162035) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "club_membership_entries", force: true do |t|
+    t.string   "user_name",        null: false
+    t.string   "club_name",        null: false
+    t.string   "connector_phrase", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "club_memberships", force: true do |t|
+    t.integer  "member_id",  null: false
+    t.integer  "club_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "club_memberships", ["member_id", "club_id"], name: "index_club_memberships_on_member_id_and_club_id", using: :btree
 
   create_table "clubs", force: true do |t|
     t.integer  "area_id",     null: false

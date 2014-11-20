@@ -8,6 +8,7 @@ class ClubsController < ApplicationController
     @area = load_area_from_url
     @club = @area.clubs.new(new_club_params)
     if @club.save
+      @club.members << current_user
       redirect_to [@area, @club]
     end
   end
