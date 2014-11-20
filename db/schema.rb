@@ -23,11 +23,12 @@ ActiveRecord::Schema.define(version: 20141120162035) do
   end
 
   create_table "clubs", force: true do |t|
-    t.integer  "area_id"
-    t.string   "name"
+    t.integer  "area_id",     null: false
+    t.string   "name",        null: false
     t.string   "image_url"
-    t.string   "location"
-    t.text     "description"
+    t.string   "location",    null: false
+    t.text     "description", null: false
+    t.integer  "admin_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resource :marketplace, only: [:show]
   end
   resources :areas, only: [:show] do
-    resources :clubs, only: [:index]
+    resources :clubs, only: [:index, :new, :create, :show]
     resources :listings
   end
   resource :dashboard, only: [:show]

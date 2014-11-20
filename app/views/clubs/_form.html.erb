@@ -1,0 +1,24 @@
+<%= form_for [area, club] do |form| %>
+  <div class="new-club-name">
+    <%= form.label :name, "Club Name:" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="new-club-location">
+    <%= form.label :location, "Location:" %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div class="new-club-description">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="new-club-image-url">
+    <%= form.label :image_url, "A picture for your club" %>
+    <%= form.text_field :image_url %>
+  </div>
+
+  <%= form.submit %>
+
+<% end %>

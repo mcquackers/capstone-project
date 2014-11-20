@@ -1,4 +1,5 @@
 <h1>Viewing <%= @area.name %>'s clubs</h1>
+<%= link_to "Create a new club", new_area_club_path(@area) %>
 <div class="club-listings">
   <%= render "clubs/club_listings", clubs: @clubs %>
 </div>
