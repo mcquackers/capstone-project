@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 20141121200949) do
     t.datetime "updated_at"
   end
 
+  create_table "buddy_relationships", force: true do |t|
+    t.integer  "user_id",                    null: false
+    t.integer  "buddy_id",                   null: false
+    t.boolean  "confirmed",  default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "buddy_relationships", ["user_id", "buddy_id"], name: "index_buddy_relationships_on_user_id_and_buddy_id", unique: true, using: :btree
+  add_index "buddy_relationships", ["user_id"], name: "index_buddy_relationships_on_user_id", using: :btree
+
   create_table "club_membership_entries", force: true do |t|
     t.string   "user_name",        null: false
     t.string   "club_name",        null: false

@@ -16,6 +16,7 @@
   <p class="lying-link"><%= @user.name %>'s Top Times</p>
   <p class="lying-link"><%= @user.name %>'s Custom Courses</p>
   <p class="lying-link"><%= @user.name %>'s Cycling Groups</p>
+  <%= buddy_button(@user) %>
 </div>
 <div class="status-update-form">
   <%= render "status_entries/form", status_entry: StatusEntry.new, user: @user %>
