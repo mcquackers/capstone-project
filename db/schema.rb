@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121200949) do
+ActiveRecord::Schema.define(version: 20141121210541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(version: 20141121200949) do
 
   add_index "buddy_relationships", ["user_id", "buddy_id"], name: "index_buddy_relationships_on_user_id_and_buddy_id", unique: true, using: :btree
   add_index "buddy_relationships", ["user_id"], name: "index_buddy_relationships_on_user_id", using: :btree
+
+  create_table "buddy_request_subjects", force: true do |t|
+    t.string   "requester_name", null: false
+    t.integer  "requester_id",   null: false
+    t.integer  "requested_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "club_membership_entries", force: true do |t|
     t.string   "user_name",        null: false

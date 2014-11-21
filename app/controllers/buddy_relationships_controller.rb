@@ -3,6 +3,7 @@ class BuddyRelationshipsController < ApplicationController
     buddy = load_buddy_from_url
     buddy_request = current_user.buddy_relationships.new(buddy_id: buddy.id)
     if buddy_request.save
+      create_buddy_request_notification(buddy)
       redirect_to buddy
     end
   end
@@ -26,5 +27,16 @@ class BuddyRelationshipsController < ApplicationController
 
   def load_buddy_from_url
     User.find(params[:user_id])
+  end
+
+  def create_buddy_request_notification(buddy)
+    buddy_request = BuddyRequestSubject.new(
+      requester_name: current_user.name,
+      requester_id: current_user.id,
+      requested_id: buddy.id
+    )
+    if buddy_request.save
+      buddy.notifications.create(subject: buddy_request)
+    end
   end
 end
