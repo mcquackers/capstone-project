@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :listings
+  has_many :notifications
   has_many :feed_updates
   has_many :club_memberships, foreign_key: "member_id"
   has_many :clubs, through: :club_memberships
