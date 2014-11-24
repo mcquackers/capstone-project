@@ -13,13 +13,15 @@
 <div class="user-socials">
   <p><%= link_to "#{@user.name}'s Marketplace",
     user_marketplace_path(@user) %></p>
+  <p><%= link_to "#{@user.name}'s Cycling Clubs",
+    user_club_list_path(@user) %></p>
   <p class="lying-link"><%= @user.name %>'s Top Times</p>
   <p class="lying-link"><%= @user.name %>'s Custom Courses</p>
-  <p class="lying-link"><%= @user.name %>'s Cycling Groups</p>
   <%= buddy_button(@user) %>
 </div>
 <div class="status-update-form">
-  <%= render "status_entries/form", status_entry: StatusEntry.new, user: @user %>
+  <%= render "status_entries/form",
+    status_entry: StatusEntry.new, user: @user %>
 </div>
 <div class="update-feed">
   <%= render "feed_updates/feed", feed_updates: @user.feed_updates %>
