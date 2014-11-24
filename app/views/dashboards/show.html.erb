@@ -2,3 +2,4 @@
 <%= link_to "Marketplace", area_listings_path(current_user.area_id) %>
 <%= link_to "Cycling Clubs", area_clubs_path(current_user.area_id) %>
 <%= link_to "Notifications", user_notifications_path(@user) %>
+<%= link_to "#{@user.area.name}'s courses", area_courses_path(@user.area) %>
