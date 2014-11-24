@@ -1,4 +1,9 @@
 class CoursesController < ApplicationController
+  def new
+    @area = load_area_from_url
+    @course = Course.new
+  end
+
   def index
     @area = load_area_from_url
     @courses = @area.courses
