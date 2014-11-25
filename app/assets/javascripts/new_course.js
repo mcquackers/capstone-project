@@ -1,9 +1,19 @@
+window.startLatLng = null;
+window.endLatLng = null;
+
 function initialize() {
   var mapOptions = {
     zoom: 16
   };
-  var map = new google.maps.Map(document.getElementById('map-pane'),
+  var rendererOptions = {
+    draggable: true
+  };
+  var directionsRenderer = new google.maps.DirectionsRenderer(rendererOptions);
+  var directionsService = new google.maps.DirectionsService();
+  var map = new google.maps.Map(document.getElementById("map-pane"),
       mapOptions);
+  directionsRenderer.setMap(map);
+  directionsRenderer.setPanel(document.getElementById("directions-pane"));
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = new google.maps.LatLng(position.coords.latitude,
@@ -20,16 +30,43 @@ function initialize() {
   var bikeLayer = new google.maps.BicyclingLayer();
   bikeLayer.setMap(map);
 
-  google.maps.event.addListener(map, 'click', function(event) {
+  google.maps.event.addListener(map, "click", function(event) {
     placeMarker(event.latLng, map);
+  });
+
+  $("#get-directions").click(function(){
+    calcRoute(directionsRenderer, directionsService)
+  });
+}
+
+function calcRoute(directionsRenderer, directionsService) {
+  var request = {
+    origin: window.startLatLng,
+    destination: window.endLatLng,
+    travelMode: google.maps.TravelMode.BICYCLING
+  };
+
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsRenderer.setDirections(response);
+    }
   });
 }
 
 function placeMarker(latLng, map) {
-  new google.maps.Marker({
-    position: latLng,
-    map: map
-  });
+  if(window.startLatLng === null){
+    window.startLatLng = latLng;
+    new google.maps.Marker({
+      position: latLng,
+      map: map
+    });
+  } else if(window.endLatLng === null){
+    window.endLatLng = latLng;
+    new google.maps.Marker({
+      position: latLng,
+      map: map
+    });
+  }
 }
 
 function handleNoGeolocation(errorFlag) {
