@@ -19,6 +19,17 @@ function initialize() {
 
   var bikeLayer = new google.maps.BicyclingLayer();
   bikeLayer.setMap(map);
+
+  google.maps.event.addListener(map, 'click', function(event) {
+    placeMarker(event.latLng, map);
+  });
+}
+
+function placeMarker(latLng, map) {
+  new google.maps.Marker({
+    position: latLng,
+    map: map
+  });
 }
 
 function handleNoGeolocation(errorFlag) {
