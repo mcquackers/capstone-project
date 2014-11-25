@@ -37,6 +37,36 @@ function initialize() {
   $("#get-directions").click(function(){
     calcRoute(directionsRenderer, directionsService)
   });
+  $("#save-route").click(function() {
+    var courseName = $("#course_name").val();
+    var legs = directionsRenderer.directions.routes[0].legs;
+    var distance = totalDistance(legs);
+    saveRoute(distance, courseName);
+    window.location.href = "/areas/"+ $("#map-pane").data("id") + "/courses";
+  }); 
+}
+
+function saveRoute(distance, courseName) {
+  var courseData = {
+    course: {
+      start_point_attributes: {
+        lat: window.startLatLng.lat(),
+        lng: window.startLatLng.lng()
+      },
+      end_point_attributes: {
+        lat: window.endLatLng.lat(),
+        lng: window.endLatLng.lng()
+      },
+      distance: distance,
+      name: courseName
+    }
+  };
+  var area_id = $("#map-pane").data("id");
+  $.ajax({
+    url: "/areas/" + area_id + "/courses",
+    type: "POST",
+    data: courseData
+  });
 }
 
 function calcRoute(directionsRenderer, directionsService) {
@@ -51,6 +81,14 @@ function calcRoute(directionsRenderer, directionsService) {
       directionsRenderer.setDirections(response);
     }
   });
+}
+
+function totalDistance(legs) {
+  var summedDistance = 0;
+  for(var i = 0; i < legs.length; i++) {
+    summedDistance += legs[i].distance.value;
+  }
+  return summedDistance;
 }
 
 function placeMarker(latLng, map) {

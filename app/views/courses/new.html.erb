@@ -1,3 +1,8 @@
-<div id="map-pane"></div>
+<%= form_for [@area, @course] do |form| %>
+  <%= form.label :name, "Course Name: " %>
+  <%= form.text_field :name %>
+<% end %>
+<div id="map-pane" data-id="<%= @area.id %>"></div>
 <div id="directions-pane"></div>
 <button type="button" id="get-directions">Get Directions</button>
+<button type="button" id="save-route">Save Route</button>
