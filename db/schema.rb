@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125184155) do
+ActiveRecord::Schema.define(version: 20141201154703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,11 +136,14 @@ ActiveRecord::Schema.define(version: 20141125184155) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   create_table "waypoints", force: true do |t|
-    t.integer  "course_id"
-    t.float    "lat"
-    t.float    "lng"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "course_id",  null: false
+    t.float    "lat",        null: false
+    t.float    "lng",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "order",      null: false
   end
+
+  add_index "waypoints", ["order"], name: "index_waypoints_on_order", using: :btree
 
 end

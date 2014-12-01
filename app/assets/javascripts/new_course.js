@@ -1,14 +1,13 @@
-window.startLatLng = null;
-window.endLatLng = null;
+window.stops = [];
+window.waypoints = [];
+window.start = null;
+window.end = null;
 
 function initialize() {
   var mapOptions = {
     zoom: 16
   };
-  var rendererOptions = {
-    draggable: true
-  };
-  var directionsRenderer = new google.maps.DirectionsRenderer(rendererOptions);
+  var directionsRenderer = new google.maps.DirectionsRenderer();
   var directionsService = new google.maps.DirectionsService();
   var map = new google.maps.Map(document.getElementById("map-pane"),
       mapOptions);
@@ -27,8 +26,7 @@ function initialize() {
     handleNoGeolocation(false);
   }
 
-  var bikeLayer = new google.maps.BicyclingLayer();
-  bikeLayer.setMap(map);
+  new google.maps.BicyclingLayer().setMap(map);
 
   google.maps.event.addListener(map, "click", function(event) {
     placeMarker(event.latLng, map);
@@ -49,14 +47,7 @@ function initialize() {
 function saveRoute(distance, courseName) {
   var courseData = {
     course: {
-      start_point_attributes: {
-        lat: window.startLatLng.lat(),
-        lng: window.startLatLng.lng()
-      },
-      end_point_attributes: {
-        lat: window.endLatLng.lat(),
-        lng: window.endLatLng.lng()
-      },
+      waypoints_attributes: window.stops,
       distance: distance,
       name: courseName
     }
@@ -71,8 +62,9 @@ function saveRoute(distance, courseName) {
 
 function calcRoute(directionsRenderer, directionsService) {
   var request = {
-    origin: window.startLatLng,
-    destination: window.endLatLng,
+    origin: window.start,
+    destination: window.end,
+    waypoints: window.waypoints,
     travelMode: google.maps.TravelMode.BICYCLING
   };
 
@@ -92,17 +84,23 @@ function totalDistance(legs) {
 }
 
 function placeMarker(latLng, map) {
-  if(window.startLatLng === null){
-    window.startLatLng = latLng;
-    new google.maps.Marker({
-      position: latLng,
-      map: map
-    });
-  } else if(window.endLatLng === null){
-    window.endLatLng = latLng;
-    new google.maps.Marker({
-      position: latLng,
-      map: map
+  new google.maps.Marker({
+    position: latLng,
+    map: map
+  });
+  if (window.stops.length < 10) {
+    if (window.start == null) {
+      window.start = latLng;
+    } else if (window.end == null) {
+      window.end = latLng;
+    } else {
+      window.waypoints.push({ location: window.end, stopover: true });
+      window.end = latLng;
+    }
+    window.stops.push({
+      lat: latLng.lat(),
+      lng: latLng.lng(),
+      order: window.stops.length,
     });
   }
 }

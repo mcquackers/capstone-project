@@ -19,6 +19,21 @@ class CoursesController < ApplicationController
     @courses = @area.courses
   end
 
+  def show
+    @area = load_area_from_url
+    @course = load_course_from_url
+    respond_to do |format|
+      format.html { render :show }
+      format.json do
+        render json: {
+          start_point: @course.start_point,
+          end_point: @course.end_point,
+          mid_points: @course.mid_points
+        }
+      end
+    end
+  end
+
   private
 
   def course_params
@@ -27,13 +42,16 @@ class CoursesController < ApplicationController
       permit(
         :name,
         :distance,
-        start_point_attributes: [:lat, :lng],
-        end_point_attributes: [:lat, :lng]
+        waypoints_attributes: [:lat, :lng, :order]
       ).
       merge(user_id: current_user.id, image_url: "")
   end
 
   def load_area_from_url
     Area.find(params[:area_id])
+  end
+
+  def load_course_from_url
+    Course.find(params[:id])
   end
 end
