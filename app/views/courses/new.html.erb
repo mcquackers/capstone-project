@@ -1,8 +1,10 @@
 <%= form_for [@area, @course] do |form| %>
   <%= form.label :name, "Course Name: " %>
   <%= form.text_field :name %>
-<% end %>
 <div id="map-pane" data-id="<%= @area.id %>"></div>
 <div id="directions-pane"></div>
-<button id="get-directions">Get Directions</button>
-<button id="save-route" disabled="true">Save Route</button>
+<button type="button" id="get-directions">Get Directions</button>
+<button type="button" id="save-route" disabled="true">Save Route</button>
+  <%= form.label :description, "Course Description: " %>
+  <%= form.text_area :description %>
+<% end %>

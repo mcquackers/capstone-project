@@ -37,19 +37,21 @@ function initialize() {
   });
   $("#save-route").click(function() {
     var courseName = $("#course_name").val();
+    var courseDescription = $("#course_description").val();
     var legs = directionsRenderer.directions.routes[0].legs;
     var distance = totalDistance(legs);
-    saveRoute(distance, courseName);
+    saveRoute(distance, courseName, courseDescription);
     window.location.href = "/areas/"+ $("#map-pane").data("id") + "/courses";
   }); 
 }
 
-function saveRoute(distance, courseName) {
+function saveRoute(distance, courseName, courseDescription) {
   var courseData = {
     course: {
       waypoints_attributes: window.stops,
       distance: distance,
-      name: courseName
+      name: courseName,
+      description: courseDescription
     }
   };
   var area_id = $("#map-pane").data("id");

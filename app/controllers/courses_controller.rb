@@ -42,6 +42,7 @@ class CoursesController < ApplicationController
       permit(
         :name,
         :distance,
+        :description,
         waypoints_attributes: [:lat, :lng, :order]
       ).
       merge(user_id: current_user.id, image_url: "")
