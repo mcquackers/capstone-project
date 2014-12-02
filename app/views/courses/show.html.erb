@@ -1,3 +1,12 @@
 <div id="course-show-pane" data-area-id="<%= @area.id %>"
 data-course-id="<%= @course.id %>"></div>
-<%= render "course_times/top_times", course_times: @course.top_times %>
+<div class="top-times-table">
+  <%= render "course_times/top_times", course_times: @course.top_times %>
+</div>
+<div class=new-course-time-form">
+  <%= form_for [@course, @course_time] do |form| %>
+    <%= form.label :duration, "Enter your time: " %>
+    <%= form.text_field :duration_in_seconds, placeholder: "HH:MM:SS" %>
+    <%= form.submit "Submit Time" %>
+  <% end %>
+</div>

@@ -24,6 +24,7 @@ class CoursesController < ApplicationController
   def show
     @area = load_area_from_url
     @course = load_course_from_url
+    @course_time = @course.course_times.new
     respond_to do |format|
       format.html { render :show }
       format.json do

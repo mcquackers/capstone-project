@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     resources :listings
     resources :courses, only: [:new, :index, :create, :show]
   end
+  resources :courses, only: [] do
+    resources :course_times, only: [:create, :index]
+  end
   resources :clubs, only: [] do
     resources :club_memberships, only: [:create, :destroy]
   end
