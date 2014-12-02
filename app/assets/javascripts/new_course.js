@@ -70,6 +70,7 @@ function calcRoute(directionsRenderer, directionsService) {
 
   directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
+      $("#save-route").removeAttr("disabled");
       directionsRenderer.setDirections(response);
     }
   });
