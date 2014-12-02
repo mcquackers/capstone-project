@@ -1,2 +1,3 @@
 <div id="course-show-pane" data-area-id="<%= @area.id %>"
 data-course-id="<%= @course.id %>"></div>
+<%= render "course_times/top_times", course_times: @course.top_times %>

@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :buddy_relationships
   has_many :buddies, through: :buddy_relationships
   has_many :courses
+  has_many :course_times
   belongs_to :area
 
   validates :email, presence: true, uniqueness: true

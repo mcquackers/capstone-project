@@ -1,0 +1,8 @@
+<tr>
+  <td>
+    <%= user_thumbnail(course_time.user) %>
+    <%= link_to course_time.user.name, course_time.user %>
+  </td>
+  <td><%= duration_in_hms_format(course_time.duration_in_seconds) %></td>
+  <td><%= course_time.created_at.to_date %></td>
+</tr>
