@@ -1,9 +1,13 @@
-<table>
-  <tr>
-    <th></th>
-    <th>Course Name</th>
-    <th>Course Creator</th>
-    <th>Distance</th>
-  </tr>
-  <%= render courses %>
+<table class="course-listing">
+  <thead>
+    <tr>
+      <th>Course Name</th>
+      <th>Distance(meters)</th>
+      <th>Course Creator</th>
+      <th>Course Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render courses %>
+  </tbody>
 </table>

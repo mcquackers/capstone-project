@@ -1,6 +1,6 @@
 <tr>
-  <td></td>
-  <td><%= course.name %></td>
-  <td><%= link_to course.user.name, course.user %></td>
-  <td><%= course.distance %></td>
+  <td class="course-listing-name"><%= link_to course.name, [course.area, course] %></td>
+  <td class="course-listing-distance"><%= course.distance %></td>
+  <td class="course-listing-creator"><%= link_to course.user.name, course.user %></td>
+  <td class="course-listing-description"><p class="desc"><%= course.description %></p></td>
 </tr>
