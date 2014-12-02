@@ -8,6 +8,8 @@ class CoursesController < ApplicationController
     @area = load_area_from_url
     @course = @area.courses.new(course_params)
     if @course.save
+      course_entry = NewCourseEntry.create(course_id: @course.id)
+      current_user.feed_updates.create(entry: course_entry)
       redirect_to area_courses_path(@area)
     else
       redirect_to root_path
@@ -45,7 +47,7 @@ class CoursesController < ApplicationController
         :description,
         waypoints_attributes: [:lat, :lng, :order]
       ).
-      merge(user_id: current_user.id, image_url: "")
+      merge(user_id: current_user.id)
   end
 
   def load_area_from_url
