@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+  before_action :require_user, only: [:new, :create]
   def new
     @area = load_area_from_url
     @course = Course.new
@@ -49,6 +50,14 @@ class CoursesController < ApplicationController
         waypoints_attributes: [:lat, :lng, :order]
       ).
       merge(user_id: current_user.id)
+  end
+
+  def require_user
+    unless signed_in?
+      redirect_to new_session_path, flash: {
+        error: "You must be signed in to do that"
+      }
+    end
   end
 
   def load_area_from_url
