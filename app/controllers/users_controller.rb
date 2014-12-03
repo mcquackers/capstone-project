@@ -13,6 +13,7 @@ class UsersController < ApplicationController
       sign_in(@user)
       redirect_to root_path
     else
+      @areas = Area.all
       render :new
     end
   end
