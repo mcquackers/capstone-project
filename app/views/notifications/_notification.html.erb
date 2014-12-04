@@ -1,1 +1,5 @@
-<li><%= render notification.subject %></li>
+<li>
+<%= render notification.subject %>
+<%= link_to image_tag("x-mark.png"),
+  [notification.user, notification], method: :delete %>
+</li>
