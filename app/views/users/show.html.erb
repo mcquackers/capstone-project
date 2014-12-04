@@ -17,7 +17,12 @@
     user_club_list_path(@user) %></p>
   <p class="lying-link"><%= @user.name %>'s Top Times</p>
   <p class="lying-link"><%= @user.name %>'s Custom Courses</p>
+</div>
+<% unless @user == current_user %>
   <%= buddy_button(@user) %>
+<% end %>
+<div class="flash">
+  <%= flash[:error] %>
 </div>
 <div class="status-update-form">
   <%= render "status_entries/form",

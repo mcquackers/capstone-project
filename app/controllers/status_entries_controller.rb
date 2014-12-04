@@ -1,4 +1,5 @@
 class StatusEntriesController < ApplicationController
+  before_action :require_buddy, only: [:create]
   def create
     @user = load_user_from_url
     @status_entry = StatusEntry.new(status_entry_params)
@@ -20,5 +21,12 @@ class StatusEntriesController < ApplicationController
 
   def feed_update_params(status_entry)
     { entry: status_entry, poster_id: current_user.id }
+  end
+
+  def require_buddy
+    user = load_user_from_url
+    unless user == current_user || user.buddies.include?(current_user)
+      redirect_to user, flash: { error: "You must be buddies" }
+    end
   end
 end
