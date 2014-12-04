@@ -1,7 +1,7 @@
 <h1>Viewing the <%= @club.name %> club</h1>
-<% if @club.members.include?(current_user) %>
-  <%= button_to "Leave club", [@club, current_user.membership_for(@club)],
-    method: :delete %>
-<% else %>
-  <%= button_to "Join club", club_club_memberships_path(@club) %>
-<% end %>
+<%= image_tag @club.image_url, class: "club-banner-image" %>
+<%= render "membership_button", club: @club %>
+<div class="club-members">
+  <%= render partial: "user_sample", collection: @club.user_sample %>
+</div>
+

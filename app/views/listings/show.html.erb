@@ -4,3 +4,9 @@
     edit_area_listing_path(@listing.area, @listing) %>
   <%= button_to "Delete this post", [@listing.area, @listing], method: :delete %>
 <% end %>
+<p>Price: <%= number_to_currency(@listing.price) %></p>
+<p>Seller: <%= link_to @listing.user_name, @listing.user %></p>
+<%= image_tag @listing.image_url, class: "listing-picture" %>
+<div class="listing-description">
+  <%= @listing.description %>
+</div>

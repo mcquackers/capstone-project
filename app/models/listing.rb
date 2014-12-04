@@ -5,6 +5,8 @@ class Listing < ActiveRecord::Base
   belongs_to :area
   belongs_to :user
 
+  delegate :name, to: :user, prefix: true
+
   validates :title, presence: true
   validate :valid_category
 

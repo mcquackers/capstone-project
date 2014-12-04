@@ -22,7 +22,7 @@
   <%= buddy_button(@user) %>
 <% end %>
 <div class = "buddy-list">
-  <%= render partial: "buddy_sample", collection: @user.buddy_sample %>
+  <%= render partial: "user_sample", collection: @user.buddy_sample %>
 </div>
 <div class="flash">
   <%= flash[:error] %>

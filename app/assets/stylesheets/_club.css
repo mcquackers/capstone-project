@@ -2,3 +2,16 @@
   max-height: 200px;
   max-width: 200px;
 }
+
+.club-banner-image {
+  max-height: 250px;
+  max-width: 900px;
+}
+
+.club-members {
+  border: 2px solid black;
+  max-height: 102px;
+  max-width: 160px;
+  padding: 1px;
+  margin: 2px;
+}
