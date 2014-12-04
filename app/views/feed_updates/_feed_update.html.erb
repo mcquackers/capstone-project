@@ -1,6 +1,9 @@
 <tr>
   <td class="feed-update-thumbnail">
-    <%= user_thumbnail(feed_update.user) %>
+    <%= user_thumbnail(feed_update.poster) %>
+  </td>
+  <td class="poster-name">
+    <%= link_to feed_update.poster.name, feed_update.poster %>
   </td>
   <td class="feed-update-entry">
     <%= render feed_update.entry %>

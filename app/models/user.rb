@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :listings
   has_many :notifications
   has_many :feed_updates
+  has_many :posts, class_name: "FeedUpdate", foreign_key: :poster_id
   has_many :club_memberships, foreign_key: "member_id"
   has_many :clubs, through: :club_memberships
   has_many :buddy_relationships

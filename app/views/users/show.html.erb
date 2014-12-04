@@ -24,5 +24,7 @@
     status_entry: StatusEntry.new, user: @user %>
 </div>
 <div class="update-feed">
-  <%= render "feed_updates/feed", feed_updates: @user.feed_updates %>
+  <table>
+    <%= render @user.feed_updates %>
+  </table>
 </div>
