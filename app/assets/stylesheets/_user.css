@@ -6,9 +6,22 @@
 .thumbnail-image {
   max-height: 50px;
   max-width: 50px;
+  padding: 1px;
+}
+
+.buddy-list {
+  border: 2px solid black;
+  max-width: 160px;
+  max-height: 160px;
+  margin-bottom: 3px;
 }
 
 .status-entry-image {
+  max-height: 250px;
+  max-width: 250px;
+}
+
+.profile-image {
   max-height: 250px;
   max-width: 250px;
 }

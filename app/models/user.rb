@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
     User.where(id: buddy_ids)
   end
 
+  def buddy_sample
+    buddies.sample(6)
+  end
+
   def pending_buddies
     pending_buddy_ids = BuddyRelationship.pending.
       where(user_id: id).
