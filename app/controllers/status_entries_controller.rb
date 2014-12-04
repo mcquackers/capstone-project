@@ -5,6 +5,7 @@ class StatusEntriesController < ApplicationController
     @status_entry = StatusEntry.new(status_entry_params)
     if @status_entry.save
       @user.feed_updates.create(feed_update_params(@status_entry))
+      send_notification(@user)
       redirect_to @user
     end
   end
@@ -21,6 +22,18 @@ class StatusEntriesController < ApplicationController
 
   def feed_update_params(status_entry)
     { entry: status_entry, poster_id: current_user.id }
+  end
+
+  def send_notification(user)
+    unless user == current_user
+      feed_post_subject = FeedPostSubject.new(
+        user_id: user.id,
+        poster_id: current_user.id
+      )
+      if feed_post_subject.save
+        user.notifications.create(subject: feed_post_subject)
+      end
+    end
   end
 
   def require_buddy
