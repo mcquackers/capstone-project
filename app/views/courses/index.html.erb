@@ -1,3 +1,4 @@
   <h1>Viewing <%= @area.name %>'s courses</h1>
 <%= link_to "Create a new course", new_area_course_path(@area) %>
-<%= render "course_listing", courses: @courses %>
+<%= render "course_listing", courses: @paginated_courses %>
+<%= paginate @paginated_courses %>

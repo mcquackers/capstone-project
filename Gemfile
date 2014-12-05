@@ -5,6 +5,7 @@ gem 'pry', group: :development
 gem 'better_errors', group: :development
 gem 'binding_of_caller', group: :development
 gem 'neat'
+gem 'kaminari'
 gem 'monban-generators'
 gem 'rails_12factor', group: :production
 gem 'rails', '4.1.6'

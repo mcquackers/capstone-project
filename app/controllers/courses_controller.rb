@@ -19,7 +19,7 @@ class CoursesController < ApplicationController
 
   def index
     @area = load_area_from_url
-    @courses = @area.courses
+    @paginated_courses = @area.courses.page(params[:page]).per(10)
   end
 
   def show

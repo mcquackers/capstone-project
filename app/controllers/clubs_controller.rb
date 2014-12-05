@@ -19,7 +19,7 @@ class ClubsController < ApplicationController
 
   def index
     @area = load_area_from_url
-    @clubs = @area.clubs
+    @paginated_clubs = @area.clubs.page(params[:page]).per(5)
   end
 
   private

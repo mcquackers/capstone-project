@@ -2,4 +2,5 @@
 <%= link_to "Create a new listing",
   new_area_listing_path(@area) %>
 <%= render "search_form" %>
-<%= render "listing_table", listings: @listings %>
+<%= render "listing_table", listings: @paginated_listings %>
+<%= paginate @paginated_listings %>

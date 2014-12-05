@@ -16,9 +16,11 @@ class ListingsController < ApplicationController
 
   def index
     @area = Area.find(params[:area_id])
-    @listings = Listing.where(filter_area_and_category).
-      where(search_title).
-      where(search_price)
+    if searched?
+      @paginated_listings = ListingSearcher.new(params, @area.id).search
+    else
+      @paginated_listings = @area.listings.page(params[:page]).per(10)
+    end
   end
 
   def edit
@@ -47,41 +49,6 @@ class ListingsController < ApplicationController
     params.require(:listing).
       permit(:title, :description, :category, :price, :image_url).
       merge(user_id: current_user.id)
-  end
-
-  def filter_area_and_category
-    if searched?
-      params.require(:search).
-        permit(:area_id, :category).
-        select { |_key, value| value.present? }
-    else
-      { area_id: current_user.area.id }
-    end
-  end
-
-  def search_params
-    params.require(:search).
-      permit(:area_id, :category, :low_price,
-                                  :high_price, :title).
-      select { |_key, value| value.present? }
-  end
-
-  def search_title
-    if searched?
-      ["title ILIKE ?", "%#{search_params[:title]}%"]
-    end
-  end
-
-  def search_price
-    if searched? && price_range_defined?
-      ["price BETWEEN ? AND ?", search_params[:low_price],
-       search_params[:high_price]]
-    end
-  end
-
-  def price_range_defined?
-    search_params.keys.include?("low_price") &&
-      search_params.keys.include?("high_price")
   end
 
   def searched?

@@ -1,5 +1,6 @@
 <h1>Viewing <%= @area.name %>'s clubs</h1>
 <%= link_to "Create a new club", new_area_club_path(@area) %>
 <div class="club-listings">
-  <%= render "clubs/club_listings", clubs: @clubs %>
+  <%= render "clubs/club_listings", clubs: @paginated_clubs %>
 </div>
+<%= paginate @paginated_clubs %>
