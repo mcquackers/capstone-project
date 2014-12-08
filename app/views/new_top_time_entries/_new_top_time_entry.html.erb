@@ -1,0 +1,4 @@
+<span><%= new_top_time_entry.feed_update.user.name %> has a new top time on 
+<%= link_to new_top_time_entry.course_name,
+  [new_top_time_entry.course_area, new_top_time_entry.course] %>
+of <%= duration_in_hms_format(new_top_time_entry.duration_in_seconds) %>!</span>

@@ -40,6 +40,12 @@ class User < ActiveRecord::Base
       uniq { |time| time.course_id }
   end
 
+  def top_time(course_id)
+    course_times.where(course_id: course_id).
+      order(duration_in_seconds: :asc).
+      first
+  end
+
   def pending_buddies
     pending_buddy_ids = BuddyRelationship.pending.
       where(user_id: id).

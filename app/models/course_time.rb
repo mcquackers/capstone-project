@@ -2,7 +2,7 @@ class CourseTime < ActiveRecord::Base
   belongs_to :course
   belongs_to :user
 
-  delegate :area, to: :user
+  delegate :area, to: :course, prefix: true
   delegate :distance, to: :course, prefix: true
   delegate :name, to: :course, prefix: true
 
