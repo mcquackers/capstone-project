@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :notifications, only: [:index, :destroy]
     resource :club_list, only: [:show]
     resources :user_courses, only: [:index]
+    resources :user_top_times, only: [:index]
     resources :buddy_relationships, only: [:create, :destroy, :update]
     resources :status_entries, only: [:create]
     resource :marketplace, only: [:show]

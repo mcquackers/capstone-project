@@ -1,0 +1,6 @@
+<tr>
+  <td><%= link_to time.course_name, [time.course.area, time.course] %></td>
+  <td><%= time.course_distance %></td>
+  <td><%= duration_in_hms_format(time.duration_in_seconds) %></td>
+  <td><%= time.created_at.to_date %></td>
+</tr>

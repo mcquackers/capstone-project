@@ -34,6 +34,12 @@ class User < ActiveRecord::Base
     buddies.sample(6)
   end
 
+  def top_times
+    course_times.ordered_by_course_and_duration.
+      to_a.
+      uniq { |time| time.course_id }
+  end
+
   def pending_buddies
     pending_buddy_ids = BuddyRelationship.pending.
       where(user_id: id).
