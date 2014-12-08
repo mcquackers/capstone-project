@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show] do
     resources :notifications, only: [:index, :destroy]
     resource :club_list, only: [:show]
+    resources :user_courses, only: [:index]
     resources :buddy_relationships, only: [:create, :destroy, :update]
     resources :status_entries, only: [:create]
     resource :marketplace, only: [:show]

@@ -11,6 +11,9 @@
   </head>
   <body>
     <div class="container">
+      <div class="dashboard-link">
+        <h3><%= link_to "CycleTheCity", root_path %></h3>
+      </div>
       <div class="session-info">
         <% if signed_in? %>
           <%= link_to current_user.name, current_user %>
