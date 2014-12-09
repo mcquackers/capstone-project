@@ -1,5 +1,5 @@
 class Listing < ActiveRecord::Base
-  CATEGORIES = ["Frames", "Locomotion Assembly", "Wheel Assembly",
+  CATEGORIES = ["Full Bikes", "Frames", "Locomotion Assembly", "Wheel Assembly",
                 "Brake Assembly", "Shifter Assembly", "Protection", "Clothing",
                 "Accessories", "Miscellaneous"]
   belongs_to :area
