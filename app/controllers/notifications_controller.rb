@@ -1,4 +1,5 @@
 class NotificationsController < ApplicationController
+  before_action :require_login
   def index
     @user = load_user_from_url
   end

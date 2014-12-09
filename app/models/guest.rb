@@ -18,4 +18,12 @@ class Guest
   def id
     nil
   end
+
+  def buddies
+    []
+  end
+
+  def pending_buddies
+    []
+  end
 end
