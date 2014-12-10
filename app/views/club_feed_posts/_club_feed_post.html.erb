@@ -1,0 +1,12 @@
+<tr>
+  <td class="feed-update-thumbnail">
+    <%= user_thumbnail(club_feed_post.poster) %>
+  </td>
+  <td class="poster-name">
+    <%= link_to club_feed_post.poster_name, club_feed_post.poster %>
+  </td>
+  <td class="club-feed-post-body">
+    <%= club_feed_post.body %>
+    <span><%= time_ago_in_words(club_feed_post.created_at) %> ago</span>
+  </td>
+</tr>

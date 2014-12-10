@@ -1,0 +1,7 @@
+<div>
+  <%= form_for [club, ClubFeedPost.new] do |form| %>
+    <%= form.text_field :body, placeholder: "Share with the club" %>
+    <%= form.hidden_field :poster_id, value: current_user.id %>
+    <%= form.submit "Post" %>
+  <% end %>
+</div>

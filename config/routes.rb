@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
   resources :clubs, only: [] do
     resources :club_memberships, only: [:create, :destroy]
+    resources :club_feed_posts, only: [:create]
   end
   resource :dashboard, only: [:show]
 

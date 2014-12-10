@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208212050) do
+ActiveRecord::Schema.define(version: 20141210154145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 20141208212050) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
+
+  create_table "club_feed_posts", force: true do |t|
+    t.integer  "club_id",    null: false
+    t.integer  "poster_id",  null: false
+    t.string   "body",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "club_feed_posts", ["club_id"], name: "index_club_feed_posts_on_club_id", using: :btree
 
   create_table "club_membership_entries", force: true do |t|
     t.string   "user_name",        null: false

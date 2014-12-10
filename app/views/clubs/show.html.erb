@@ -4,4 +4,11 @@
 <div class="club-members">
   <%= render partial: "user_sample", collection: @club.user_sample %>
 </div>
-
+<% if @club.members.include?(current_user) %>
+  <div>
+    <%= render "club_feed_post_form", club: @club %>
+    <table>
+      <%= render @club.club_feed_posts %>
+    </table>
+  </div>
+<% end %>
