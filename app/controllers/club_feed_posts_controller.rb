@@ -1,7 +1,7 @@
 class ClubFeedPostsController < ApplicationController
   def create
     club = load_club_from_url
-    feed_post = @club.club_feed_posts.new(feed_post_params)
+    feed_post = club.club_feed_posts.new(feed_post_params)
     feed_post.save
 
     redirect_to [club.area, club]

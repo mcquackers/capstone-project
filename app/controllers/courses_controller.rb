@@ -9,7 +9,10 @@ class CoursesController < ApplicationController
     @course = @area.courses.new(course_params)
     if @course.save
       course_entry = NewCourseEntry.create(course_id: @course.id)
-      current_user.feed_updates.create(entry: course_entry)
+      current_user.feed_updates.create(
+        entry: course_entry,
+        poster_id: current_user.id
+      )
       redirect_to area_courses_path(@area)
     else
       redirect_to root_path
