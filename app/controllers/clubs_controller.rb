@@ -9,6 +9,7 @@ class ClubsController < ApplicationController
     @club = @area.clubs.new(new_club_params)
     if @club.save
       @club.members << current_user
+      handle_new_club_feed_post(@club)
       redirect_to [@area, @club]
     end
   end
@@ -26,6 +27,25 @@ class ClubsController < ApplicationController
 
   def load_area_from_url
     Area.find(params[:area_id])
+  end
+
+  def handle_new_club_feed_post(club)
+    new_club_entry = create_new_club_entry(club)
+    create_new_club_feed_post(new_club_entry)
+  end
+
+  def create_new_club_feed_post(new_club_entry)
+    current_user.feed_updates.create(
+      entry: new_club_entry,
+      poster_id: current_user.id
+    )
+  end
+
+  def create_new_club_entry(club)
+    NewClubEntry.create(
+      user_id: current_user.id,
+      club_id: club.id
+    )
   end
 
   def load_club_from_url
